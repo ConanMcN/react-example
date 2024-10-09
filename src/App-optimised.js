@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 
 const API_URL = "https://api.sampleapis.com/coffee/hot";
 
@@ -33,7 +33,7 @@ const MyComponent = () => {
     fetchData();
   }, [fetchData]);
 
-  const renderCoffeeList = useCallback(() => {
+  const coffeeList = useMemo(() => {
     return data?.map(coffee => (
       <div key={coffee.id} className="coffee-card">
         <h2>{coffee.title}</h2>
@@ -48,7 +48,7 @@ const MyComponent = () => {
   return (
     <div className="container">
       <h1>Coffee List</h1>
-      {renderCoffeeList()}
+      {coffeeList}
     </div>
   );
 };
